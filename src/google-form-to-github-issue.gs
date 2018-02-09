@@ -37,7 +37,7 @@ Reported by {{reporter}}\
 
 
 function onFormSubmit(e) {
-  var payloadBuilder = new PayloadBuilderFactory(e.values)
+  var payloadBuilder = new GitHubIssueBuilder(e.values)
     .addTitle()
     .addBody()
     .addLabels()
@@ -51,7 +51,7 @@ function onFormSubmit(e) {
   UrlFetchApp.fetch('https://api.github.com/repos/' + repo + '/issues?access_token=' + ghToken, options);
 }
 
-function PayloadBuilderFactory(row, ops) {
+function GitHubIssueBuilder(row, ops) {
   var payload = ops || {};
 
   this.addTitle = addTitle.bind(this, payload, row);
